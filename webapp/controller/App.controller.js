@@ -1,13 +1,12 @@
-sap.ui.define([
-	"sap/ui/core/mvc/Controller",
-	"sap/ui/model/json/JSONModel",
-	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
-], function(Controller, JSONModel, Filter, FilterOperator) {
+sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/model/json/JSONModel", "sap/ui/model/Filter", "sap/ui/model/FilterOperator"], function(
+	Controller,
+	JSONModel,
+	Filter,
+	FilterOperator
+) {
 	"use strict";
 
-	return Controller.extend("sap.ui.demo.todo.controller.App", {
-
+	return Controller.extend("utg.ui5.fiori3.controller.App", {
 		onInit: function() {
 			this.aSearchFilters = [];
 			this.aTabFilters = [];
@@ -18,7 +17,9 @@ sap.ui.define([
 		 */
 		addTodo: function() {
 			var oModel = this.getView().getModel();
-			var aTodos = oModel.getProperty("/todos").map(function (oTodo) { return Object.assign({}, oTodo); });
+			var aTodos = oModel.getProperty("/todos").map(function(oTodo) {
+				return Object.assign({}, oTodo);
+			});
 
 			aTodos.push({
 				title: oModel.getProperty("/newTodo"),
@@ -34,7 +35,9 @@ sap.ui.define([
 		 */
 		clearCompleted: function() {
 			var oModel = this.getView().getModel();
-			var aTodos = oModel.getProperty("/todos").map(function (oTodo) { return Object.assign({}, oTodo); });
+			var aTodos = oModel.getProperty("/todos").map(function(oTodo) {
+				return Object.assign({}, oTodo);
+			});
 
 			var i = aTodos.length;
 			while (i--) {
@@ -101,7 +104,7 @@ sap.ui.define([
 					break;
 				case "all":
 				default:
-					// Don't use any filter
+				// Don't use any filter
 			}
 
 			this._applyListFilters();
@@ -113,7 +116,5 @@ sap.ui.define([
 
 			oBinding.filter(this.aSearchFilters.concat(this.aTabFilters), "todos");
 		}
-
 	});
-
 });

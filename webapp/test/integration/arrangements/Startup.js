@@ -1,19 +1,15 @@
-sap.ui.define([
-	"sap/ui/test/Opa5"
-], function(Opa5) {
+sap.ui.define(["sap/ui/test/Opa5"], function(Opa5) {
 	"use strict";
 
-	return Opa5.extend("sap.ui.demo.todo.test.integration.arrangements.Startup", {
-
-		iStartMyApp: function () {
+	return Opa5.extend("utg.ui5.fiori3.test.integration.arrangements.Startup", {
+		iStartMyApp: function() {
 			this.iStartMyUIComponent({
 				componentConfig: {
-					name: "sap.ui.demo.todo",
+					name: "utg.ui5.fiori3",
 					async: true,
 					manifest: true
 				}
 			});
 		}
-
 	});
 });
