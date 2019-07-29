@@ -36,6 +36,28 @@
 					"uri": "css/styles.css"
 				}
 			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"async": true,
+				"viewType": "XML",
+				"viewPath": "utg.ui5.fiori3.view",
+				"controlId": "indexApp",
+				"transition": "show",
+				"controlAggregation": "pages"
+			},
+			"routes": {
+				"welcome": {
+					"pattern": "",
+					"target": "welcome"
+				}
+			},
+			"targets": {
+				"welcome": {
+					"viewName": "Main"
+				}
+			}
 		}
 	}
 }
