@@ -6,10 +6,28 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/model/json/JSONModel", "sap
 ) {
 	"use strict";
 
-	return Controller.extend("utg.ui5.fiori3.controller.App", {
+	return Controller.extend("utg.ui5.fiori3.controller.Main", {
 		onInit: function() {
 			this.aSearchFilters = [];
 			this.aTabFilters = [];
+
+			const cardManifests = new JSONModel("../model/cardManifest.json");
+			const componentCardUrl = sap.ui.require.toUrl("utg/ui5/fiori3/componentCard/manifest.json");
+
+			this.getView().setModel(cardManifests, "manifests");
+			this.getView().setModel(
+				new JSONModel({
+					componentCardUrl: componentCardUrl
+				})
+			);
+
+			// 	"@openui5/sap.f": "^1.68.1",
+			// "@openui5/sap.m": "^1.68.1",
+			// "@openui5/sap.tnt": "^1.68.1",
+			// "@openui5/sap.ui.commons": "^1.68.1",
+			// "@openui5/sap.ui.core": "^1.68.1",
+			// "@openui5/sap.ui.integration": "^1.68.1",
+			// "@openui5/themelib_sap_fiori_3": "^1.68.1"
 
 			// apply content density mode to root view
 			this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());

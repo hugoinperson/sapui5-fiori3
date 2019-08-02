@@ -4,7 +4,7 @@
   "description": "Sample of an OpenUI5 app",
   "private": true,
   "scripts": {
-    "start": "ui5 serve -o index.html",
+    "start": "ui5 serve --h2 -o index.html",
     "lint": "eslint webapp",
     "karma": "karma start",
     "karma-ci": "rimraf coverage && karma start karma-ci.conf.js",
@@ -14,11 +14,7 @@
     "build-self-contained": "rimraf dist && ui5 build self-contained -a",
     "serve-dist": "ws --compress -d dist"
   },
-  "dependencies": {
-    "@openui5/sap.m": "^1.67.1",
-    "@openui5/sap.ui.core": "^1.67.1",
-    "@openui5/themelib_sap_fiori_3": "^1.67.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@ui5/cli": "^1.6.0",
     "eslint": "^5.16.0",
