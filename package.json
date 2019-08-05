@@ -14,7 +14,9 @@
     "build-self-contained": "rimraf dist && ui5 build self-contained -a",
     "serve-dist": "ws --compress -d dist"
   },
-  "dependencies": {},
+  "dependencies": {
+    "twitter": "^1.7.1"
+  },
   "devDependencies": {
     "@ui5/cli": "^1.6.0",
     "eslint": "^5.16.0",

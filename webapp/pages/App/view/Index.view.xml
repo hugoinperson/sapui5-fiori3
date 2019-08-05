@@ -1,0 +1,47 @@
+<mvc:View controllerName="utg.pages.App.controller.Index"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:tnt="sap.tnt"
+	height="100%"
+	displayBlock="true">
+
+	<tnt:ToolPage>
+		<tnt:header>
+			<f:ShellBar class="utg-shell-bar"
+				title="Social Media Board"
+				secondTitle="{page>/date}"
+				homeIcon="{resource>/logoUrl}"
+				homeIconTooltip="Utegration"
+				showCopilot="true"
+				showNotifications="true"
+				showMenuButton="false"
+				homeIconPressed="onGoHome"
+				notificationsNumber="2">
+				<f:menu>
+					<Menu itemSelected="onSwitch">
+						<MenuItem key="twitter"
+							text="Twitter"
+							icon="sap-icon://flight" />
+						<MenuItem key="linkedin"
+							text="LinkedIn"
+							icon="sap-icon://car-rental" />
+						<MenuItem key="facebook"
+							text="Facebook"
+							icon="sap-icon://car-rental" />
+					</Menu>
+				</f:menu>
+				<f:profile>
+					<f:Avatar initials="UI"/>
+				</f:profile>
+				<f:searchManager>
+					<f:SearchManager/>
+				</f:searchManager>
+			</f:ShellBar>
+		</tnt:header>
+		<tnt:mainContents>
+			<App id="indexApp" />
+		</tnt:mainContents>
+	</tnt:ToolPage>
+
+</mvc:View>

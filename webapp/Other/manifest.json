@@ -1,0 +1,65 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "utg",
+		"type": "application"
+	},
+	"sap.ui5": {
+		"dependencies": {
+			"minUI5Version": "1.60.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.f": {},
+				"sap.tnt": {}
+			}
+		},
+		"rootView": {
+			"viewName": "utg.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "utg.i18n.i18n"
+				}
+			},
+			"": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/todoitems.json"
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/styles.css"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"async": true,
+				"viewType": "XML",
+				"viewPath": "utg.view",
+				"controlId": "indexApp",
+				"transition": "show",
+				"controlAggregation": "pages"
+			},
+			"routes": {
+				"welcome": {
+					"pattern": "",
+					"target": "welcome"
+				}
+			},
+			"targets": {
+				"welcome": {
+					"viewName": "Main"
+				}
+			}
+		}
+	}
+}
