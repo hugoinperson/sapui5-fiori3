@@ -11,34 +11,33 @@ var T = new Twitter(config);
 // };
 
 var params = {
-	screen_name: "BonnieGlaser",
-	count: 2
+	screen_name: "Utegration",
+	count: 10
 };
 
-T.get("statuses/user_timeline", params, function(err, data, response) {
-	if (!err) {
-		// Loop through the returned tweets
-		for (let i = 0; i < data.length; i++) {
-			// Get the tweet text from the returned data
-			let text = data[i].text;
+const express = require("express");
+const bodyParser = require("body-parser");
+const app = express();
+const port = 2266;
 
-			console.log(text);
-
-			// Try to Favorite the selected Tweet
-			// T.post("favorites/create", id, function(err, response) {
-			// 	// If the favorite fails, log the error message
-			// 	if (err) {
-			// 		console.log(err[0].message);
-			// 	}
-			// 	// If the favorite is successful, log the url of the tweet
-			// 	else {
-			// 		let username = response.user.screen_name;
-			// 		let tweetId = response.id_str;
-			// 		console.log("Favorited: ", `https://twitter.com/${username}/status/${tweetId}`);
-			// 	}
-			// });
-		}
-	} else {
-		console.log(err);
-	}
+app.use(function(req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	next();
 });
+
+// create application/json parser
+var jsonParser = bodyParser.json();
+
+app.get("/", (req, res) => {
+	T.get("statuses/user_timeline", params, function(err, data, response) {
+		if (!err) {
+			return res.send(data);
+		} else {
+			console.log(err);
+			return res.send("Something goes wrong!");
+		}
+	});
+});
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));

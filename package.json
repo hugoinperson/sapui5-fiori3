@@ -4,7 +4,9 @@
   "description": "Sample of an OpenUI5 app",
   "private": true,
   "scripts": {
-    "start": "ui5 serve --h2 -o index.html",
+    "start": "(npm run start-node-app) & (npm run start-ui5-app)",
+    "start-ui5-app": "ui5 serve --h2 -p 5566",
+    "start-node-app": "node app.js",
     "lint": "eslint webapp",
     "karma": "karma start",
     "karma-ci": "rimraf coverage && karma start karma-ci.conf.js",
@@ -15,6 +17,8 @@
     "serve-dist": "ws --compress -d dist"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
     "twitter": "^1.7.1"
   },
   "devDependencies": {

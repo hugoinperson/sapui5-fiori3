@@ -30,7 +30,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller"], function(Controller) {
 					this._compEventBus.publish("app", "routing", { target: "main" });
 					break;
 			}
-			console.log("PPPPPP", oEvent);
 		}
 	});
 });

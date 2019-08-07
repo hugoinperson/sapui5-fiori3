@@ -8,7 +8,11 @@ sap.ui.define(["sap/ui/core/Component"], function(Component) {
 		init: function() {
 			// call the base component's init function and create the App view
 
-			console.log("!!!!!");
+			console.log("VVVVV");
+		},
+
+		getTweets: function() {
+			return fetch("http://localhost:2266/");
 		}
 	});
 });

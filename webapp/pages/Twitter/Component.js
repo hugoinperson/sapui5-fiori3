@@ -1,4 +1,4 @@
-sap.ui.define(["sap/ui/core/UIComponent"], function(UIComponent) {
+sap.ui.define(["sap/ui/core/UIComponent", "sap/ui/core/Component"], function(UIComponent, Component) {
 	"use strict";
 	return UIComponent.extend("utg.pages.Twitter.Component", {
 		metadata: {
@@ -9,8 +9,24 @@ sap.ui.define(["sap/ui/core/UIComponent"], function(UIComponent) {
 			// call the base component's init function and create the App view
 			UIComponent.prototype.init.apply(this, arguments);
 
-			// create the views based on the url/hash
-			this.getRouter().initialize();
+			// initiate services
+			Promise.all([this.createTwitterService()])
+				.then(data => {
+					console.log("jjjj", data);
+				})
+				.finally(() => {
+					// create the views based on the url/hash
+					this.getRouter().initialize();
+				});
+		},
+
+		createTwitterService: function() {
+			return Component.create({
+				id: "twitterSrv",
+				name: "utg.services.Twitter",
+				manifestFirst: true,
+				async: true
+			});
 		}
 	});
 });
