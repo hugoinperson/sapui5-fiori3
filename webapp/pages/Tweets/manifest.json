@@ -1,8 +1,8 @@
 {
 	"_version": "1.12.0",
 	"sap.app": {
-		"id": "utg.pages.Twitter",
-		"type": "application",
+		"id": "utg.pages.Tweets",
+		"type": "component",
 		"embeds": [],
 		"embeddedBy": "../App"
 	},
@@ -17,16 +17,16 @@
 			}
 		},
 		"rootView": {
-			"viewName": "utg.pages.Twitter.view.Index",
+			"viewName": "utg.pages.Tweets.view.Index",
 			"type": "XML",
 			"async": true,
-			"id": "twitter"
+			"id": "tweets"
 		},
 		"models": {
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "utg.pages.Twitter.i18n.i18n"
+					"bundleName": "utg.pages.Tweets.i18n.i18n"
 				}
 			}
 		},
@@ -42,8 +42,8 @@
 				"routerClass": "sap.m.routing.Router",
 				"async": true,
 				"viewType": "XML",
-				"viewPath": "utg.pages.Twitter.view",
-				"controlId": "indexTwitter",
+				"viewPath": "utg.pages.Tweets.view",
+				"controlId": "indexTweets",
 				"transition": "show",
 				"controlAggregation": "pages"
 			},

@@ -1,9 +1,0 @@
-<mvc:View controllerName="utg.pages.App.controller.Main"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns="sap.m"
-	height="100%"
-	displayBlock="true">
-
-	<Text text="Home page" />
-
-</mvc:View>

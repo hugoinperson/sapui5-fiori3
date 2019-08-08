@@ -1,6 +1,6 @@
 sap.ui.define(["sap/ui/core/UIComponent", "sap/ui/core/Component"], function(UIComponent, Component) {
 	"use strict";
-	return UIComponent.extend("utg.pages.Twitter.Component", {
+	return UIComponent.extend("utg.pages.Tweets.Component", {
 		metadata: {
 			manifest: "json"
 		},

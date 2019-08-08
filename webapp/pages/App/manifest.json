@@ -3,7 +3,7 @@
 	"sap.app": {
 		"id": "utg.pages.App",
 		"type": "application",
-		"embeds": ["utg/TwitterPage", "utg/LinkedInPage", "utg/FacebookPage"],
+		"embeds": ["utg/OverviewPage", "utg/TweetsPage", "utg/FollowersPage"],
 		"embeddedBy": "./"
 	},
 	"sap.ui5": {
@@ -17,8 +17,20 @@
 			}
 		},
 		"componentUsages": {
-			"twitterPage": {
-				"name": "utg.pages.Twitter",
+			"overviewPage": {
+				"name": "utg.pages.Overview",
+				"settings": {},
+				"componentData": {},
+				"lazy": false
+			},
+			"tweetsPage": {
+				"name": "utg.pages.Tweets",
+				"settings": {},
+				"componentData": {},
+				"lazy": false
+			},
+			"followersPage": {
+				"name": "utg.pages.Followers",
 				"settings": {},
 				"componentData": {},
 				"lazy": false
@@ -51,30 +63,25 @@
 				"async": true,
 				"viewType": "XML",
 				"viewPath": "utg.pages.App.view",
-				"controlId": "indexApp",
-				"transition": "show",
-				"controlAggregation": "pages"
+				"transition": "show"
 			},
 			"routes": {
-				"main": {
+				"overview": {
 					"pattern": "",
-					"target": "main"
+					"target": "overview"
 				},
-				"twitter": {
-					"pattern": "twitter",
+				"tweets": {
+					"pattern": "tweets",
 					"target": {
-						"name": "twitter",
+						"name": "tweets",
 						"prefix": "atch"
 					}
 				}
 			},
 			"targets": {
-				"main": {
-					"viewName": "Main"
-				},
-				"twitter": {
+				"overview": {
 					"type": "Component",
-					"usage": "twitterPage",
+					"usage": "overviewPage",
 					"options": {
 						"manifestFirst": true,
 						"async": true
@@ -82,7 +89,23 @@
 					"containerOptions": {
 						"async": true,
 						"height": "100%"
-					}
+					},
+					"controlId": "overviewComponent",
+					"controlAggregation": "pages"
+				},
+				"tweets": {
+					"type": "Component",
+					"usage": "tweetsPage",
+					"options": {
+						"manifestFirst": true,
+						"async": true
+					},
+					"containerOptions": {
+						"async": true,
+						"height": "100%"
+					},
+					"controlId": "tweetsComponent",
+					"controlAggregation": "pages"
 				}
 			}
 		}

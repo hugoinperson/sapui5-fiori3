@@ -3,6 +3,6 @@
 	height="100%"
 	displayBlock="true">
 
-	<App id="indexTwitter" />
+	<App id="indexTweets" />
 
 </mvc:View>

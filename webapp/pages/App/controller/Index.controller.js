@@ -3,33 +3,33 @@ sap.ui.define(["sap/ui/core/mvc/Controller"], function(Controller) {
 
 	return Controller.extend("utg.pages.App.controller.Index", {
 		onInit: function() {
+			this._iconTabBar = this.getView().byId("utgIconTabBar");
+			this._compRouter = this.getOwnerComponent().getRouter();
 			this._compEventBus = this.getOwnerComponent().getEventBus();
 
 			// apply content density mode to root view
 			this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
+
+			// Startup functions
+			this._subscribeEvents();
+		},
+
+		_subscribeEvents: function() {
+			this._compRouter.attachRouteMatched(this._onRouteMatched, this);
+		},
+
+		_onRouteMatched: function(oEvent) {
+			const route = oEvent.getParameter("name");
+			this._iconTabBar.setSelectedKey(route);
 		},
 
 		onGoHome: function() {
-			this._compEventBus.publish("app", "routing", { target: "main" });
+			this._compEventBus.publish("app", "routing", { target: "overview" });
 		},
 
-		onSwitch: function(oEvent) {
-			const key = oEvent.getParameter("item").getKey();
-
-			switch (key) {
-				case "twitter":
-					this._compEventBus.publish("app", "routing", { target: "twitter" });
-					break;
-				case "linkedin":
-					this._compEventBus.publish("app", "routing", { target: "linkedin" });
-					break;
-				case "facebook":
-					this._compEventBus.publish("app", "routing", { target: "facebook" });
-					break;
-				default:
-					this._compEventBus.publish("app", "routing", { target: "main" });
-					break;
-			}
+		onSelectPage: function(oEvent) {
+			const key = oEvent.getParameter("key");
+			this._compEventBus.publish("app", "routing", { target: key });
 		}
 	});
 });
