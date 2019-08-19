@@ -1,12 +1,12 @@
 {
-  "name": "openui5-sample-app",
+  "name": "sapui5-fiori3",
   "version": "0.2.0",
   "description": "Sample of an OpenUI5 app",
   "private": true,
   "scripts": {
-    "start": "(npm run start-node-app) & (npm run start-ui5-app)",
+    "start": "(npm run start-odata-app) & (npm run start-ui5-app)",
     "start-ui5-app": "ui5 serve --h2 -p 5566",
-    "start-node-app": "node app.js",
+    "start-odata-app": "cd odata && node server.js",
     "lint": "eslint webapp",
     "karma": "karma start",
     "karma-ci": "rimraf coverage && karma start karma-ci.conf.js",
@@ -17,12 +17,15 @@
     "serve-dist": "ws --compress -d dist"
   },
   "dependencies": {
+    "@sap/cds": "^3.13.0",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "twitter": "^1.7.1"
   },
   "devDependencies": {
-    "@ui5/cli": "^1.6.0",
+    "@ui5/cli": "^1.7.0",
     "eslint": "^5.16.0",
     "karma": "^4.2.0",
     "karma-chrome-launcher": "^2.2.0",

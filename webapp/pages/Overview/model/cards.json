@@ -245,10 +245,7 @@
 			},
 			"header": {
 				"title": "Sales Orders for Key Accounts",
-				"subTitle": "Today",
-				"status": {
-					"text": "{headerData/statusText}"
-				}
+				"subTitle": "Today"
 			},
 			"content": {
 				"row": {
@@ -302,11 +299,13 @@
 					"json": [
 						{
 							"Title": "Call Donna Mendez",
+							"Description": "San Joaquin valley",
 							"Icon": "sap-icon://outgoing-call",
 							"Time": "9:15 AM"
 						},
 						{
 							"Title": "Incidents Status - Online",
+							"Description": "San Joaquin valley",
 							"Icon": "sap-icon://my-view",
 							"Time": "10:00 - 11:00"
 						},
