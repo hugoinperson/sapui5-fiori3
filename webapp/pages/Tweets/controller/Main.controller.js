@@ -1,28 +1,55 @@
-sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/Component", "sap/ui/model/json/JSONModel"], function(
-	Controller,
-	Component,
-	JSONModel
-) {
-	"use strict";
+sap.ui.define(
+	[
+		"sap/ui/core/mvc/Controller",
+		"sap/ui/core/Component",
+		"sap/ui/model/json/JSONModel",
+		"sap/m/Text",
+		"sap/ui/integration/widgets/Card",
+		"sap/f/GridContainerItemLayoutData"
+	],
+	function(Controller, Component, JSONModel, Text, Card, GridContainerItemLayoutData) {
+		"use strict";
 
-	return Controller.extend("utg.pages.Tweets.controller.Main", {
-		onInit: function() {
-			this._twitterService = Component.get("twitterSrv");
-			this._twitterModel = new JSONModel();
-			this._cardManifests = new JSONModel(sap.ui.require.toUrl("utg/pages/Overview/model/cards.json"));
+		return Controller.extend("utg.pages.Tweets.controller.Main", {
+			onInit: function() {
+				// use custom component for integration card
+				this._compCardManifest = this.getOwnerComponent()
+					.getModel("compCardManifest")
+					.getData();
+			},
 
-			this.getView().setModel(this._cardManifests, "manifests");
-			this.getView().setModel(this._twitterModel, "twitter");
+			cardFactory: function(sId, oContext) {
+				const tweet = this.parseTweet(oContext.getObject());
+				const layoutData = new GridContainerItemLayoutData({ minRows: 1, columns: 4 });
 
-			this._twitterService
-				.getTweets()
-				.then(res => res.json())
-				.then(data => {
-					this._twitterModel.setProperty("/tweets", data);
-				})
-				.catch(error => {
-					console.log("no", error);
-				});
-		}
-	});
-});
+				// custom manifest for component card
+				const customManifest = JSON.parse(JSON.stringify(this._compCardManifest));
+				customManifest["sap.card"]["data"] = { json: tweet };
+				const manifest = customManifest;
+				const card = new Card({ manifest, layoutData });
+
+				return card;
+			},
+
+			parseTweet: function(tweet) {
+				if (!tweet) {
+					return {};
+				}
+
+				// parse text
+				let content = tweet.text;
+				if (content.substring(0, 3) === "RT ") {
+					tweet.text = content.replace("RT ", "");
+					tweet.type = "Retweet";
+				} else {
+					tweet.type = "Tweet";
+				}
+
+				// parse time
+				tweet.time = new Date(tweet.time).toLocaleString();
+
+				return tweet;
+			}
+		});
+	}
+);

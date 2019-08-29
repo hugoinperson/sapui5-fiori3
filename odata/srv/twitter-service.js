@@ -13,14 +13,20 @@ const twitterHandle = new twitter({
 });
 
 function parseTweets(tweets) {
-	return tweets.map(tweet => ({
-		ID: `${tweet.id_str}`,
-		text: tweet.full_text,
-		// author_ID: `${tweet.user.id_str}`,
-		time: `${new Date(tweet.created_at).toISOString()}`,
-		userName: tweet.user.name,
-		userPicUrl: tweet.user.profile_image_url
-	}));
+	return tweets
+		.sort((a, b) => {
+			const date1 = new Date(a.created_at).getTime();
+			const date2 = new Date(b.created_at).getTime();
+			return date1 - date2;
+		})
+		.map(tweet => ({
+			ID: `${tweet.id_str}`,
+			text: tweet.full_text,
+			time: `${new Date(tweet.created_at).toISOString()}`,
+			userName: tweet.user.name,
+			screenName: tweet.user.screen_name,
+			userPicUrl: tweet.user.profile_image_url.replace("http", "https")
+		}));
 }
 
 function parseMedia(media, tweetId) {
@@ -34,27 +40,28 @@ function parseMedia(media, tweetId) {
 
 module.exports = srv => {
 	srv.on("READ", "Tweets", async req => {
-		const params = {
+		const timelineParams = {
 			screen_name: "Utegration",
 			count: 30,
 			tweet_mode: "extended"
 		};
 
-		const data = await twitterHandle.get("statuses/user_timeline", params);
+		const searchParams = {
+			q: "@Utegration",
+			count: 30,
+			result_type: "mixed",
+			tweet_mode: "extended"
+		};
 
-		if (data) {
+		const timelineData = await twitterHandle.get("statuses/user_timeline", timelineParams);
+		const searchData = await twitterHandle.get("search/tweets", searchParams);
+
+		if (timelineData && searchData) {
+			const data = [...timelineData, ...searchData.statuses];
 			// console.log(JSON.stringify(data, null, 2));
 			return parseTweets(data);
 		} else {
 			req.reject(500, "Cannot get tweets!");
 		}
 	});
-
-	// srv.on("READ", "Authors", req => {
-	// 	return [{ ID: "1446943182", name: "Hello" }];
-	// });
-
-	// srv.on("READ", "Media", req => {
-	// 	return [{ ID: "123", tweet_ID: "1155870849339154437" }];
-	// });
 };

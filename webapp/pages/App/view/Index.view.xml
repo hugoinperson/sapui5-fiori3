@@ -41,10 +41,6 @@
 						text="Tweets">
 						<App id="tweetsComponent" />
 					</IconTabFilter>
-					<IconTabFilter key="followers"
-						text="Followers">
-						<App id="followersComponent" />
-					</IconTabFilter>
 				</items>
 			</IconTabBar>
 		</tnt:mainContents>

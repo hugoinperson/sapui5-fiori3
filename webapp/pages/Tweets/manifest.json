@@ -4,7 +4,16 @@
 		"id": "utg.pages.Tweets",
 		"type": "component",
 		"embeds": [],
-		"embeddedBy": "../App"
+		"embeddedBy": "../App",
+		"dataSources": {
+			"twitterService": {
+				"uri": "http://localhost:4004/twitter/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "4.0"
+				}
+			}
+		}
 	},
 	"sap.ui5": {
 		"dependencies": {
@@ -23,6 +32,18 @@
 			"id": "tweets"
 		},
 		"models": {
+			"": {
+				"dataSource": "twitterService",
+				"preload": true,
+				"settings": {
+					"autoExpandSelect": true,
+					"operationMode": "Server",
+					"groupId": "$auto",
+					"synchronizationMode": "None"
+				},
+				"type": "sap.ui.model.odata.v4.ODataModel"
+			},
+
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {

@@ -1,32 +1,21 @@
-sap.ui.define(["sap/ui/core/UIComponent", "sap/ui/core/Component"], function(UIComponent, Component) {
+sap.ui.define(["sap/ui/core/UIComponent", "sap/ui/model/json/JSONModel"], function(UIComponent, JSONModel) {
 	"use strict";
 	return UIComponent.extend("utg.pages.Tweets.Component", {
 		metadata: {
 			manifest: "json"
 		},
-
-		init: function() {
+		init: async function() {
 			// call the base component's init function and create the App view
 			UIComponent.prototype.init.apply(this, arguments);
 
-			// initiate services
-			Promise.all([this.createTwitterService()])
-				.then(data => {
-					console.log("jjjj", data);
-				})
-				.finally(() => {
-					// create the views based on the url/hash
-					this.getRouter().initialize();
-				});
-		},
+			// load the component card manifest
+			const compCardUrl = sap.ui.require.toUrl("utg/components/TweetCard/manifest.json");
+			const compCardManifestModel = new JSONModel(compCardUrl);
+			this.setModel(compCardManifestModel, "compCardManifest");
+			await compCardManifestModel.dataLoaded();
 
-		createTwitterService: function() {
-			return Component.create({
-				id: "twitterSrv",
-				name: "utg.services.Twitter",
-				manifestFirst: true,
-				async: true
-			});
+			// create the views based on the url/hash
+			this.getRouter().initialize();
 		}
 	});
 });

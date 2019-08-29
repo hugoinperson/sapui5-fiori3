@@ -7,7 +7,11 @@ const fioriPreview = require("@sap/cds/lib/utils/fiori-preview");
 const serve = (module.exports = async (models, o) => {
 	const app = express();
 
-	app.use(cors());
+	app.use(
+		cors({
+			exposedHeaders: "OData-Version"
+		})
+	);
 
 	// serve static resources
 	app.use(express.static(cds.env.folders.app)); //> defaults to ./app

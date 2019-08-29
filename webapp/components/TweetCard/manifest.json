@@ -1,7 +1,7 @@
 {
-	"_version": "1.12.0",
+	"_version": "1.14.0",
 	"sap.app": {
-		"id": "utg.componentCard",
+		"id": "utg.components.TweetCard",
 		"type": "card",
 		"applicationVersion": {
 			"version": "1.0.0"
@@ -9,10 +9,9 @@
 	},
 	"sap.ui5": {
 		"rootView": {
-			"viewName": "utg.componentCard.Main",
+			"viewName": "utg.components.TweetCard.view.Main",
 			"type": "XML",
-			"async": true,
-			"id": "app"
+			"async": true
 		},
 		"dependencies": {
 			"minUI5Version": "1.38",
@@ -24,15 +23,11 @@
 	"sap.card": {
 		"type": "Component",
 		"header": {
-			"title": "Site Visit - Peach Valley",
-			"actions": [
-				{
-					"type": "Navigation",
-					"parameters": {
-						"url": "/peachValley"
-					}
-				}
-			]
+			"title": "{userName}",
+			"subTitle": "@{screenName}",
+			"icon": {
+				"src": "{userPicUrl}"
+			}
 		}
 	}
 }

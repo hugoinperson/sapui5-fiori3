@@ -3,7 +3,7 @@
 	"sap.app": {
 		"id": "utg.pages.App",
 		"type": "application",
-		"embeds": ["utg/OverviewPage", "utg/TweetsPage", "utg/FollowersPage"],
+		"embeds": ["utg/OverviewPage", "utg/TweetsPage"],
 		"embeddedBy": "./"
 	},
 	"sap.ui5": {
@@ -25,12 +25,6 @@
 			},
 			"tweetsPage": {
 				"name": "utg.pages.Tweets",
-				"settings": {},
-				"componentData": {},
-				"lazy": false
-			},
-			"followersPage": {
-				"name": "utg.pages.Followers",
 				"settings": {},
 				"componentData": {},
 				"lazy": false
