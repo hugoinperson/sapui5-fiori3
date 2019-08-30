@@ -3,7 +3,6 @@
  */
 
 require("dotenv").config({ path: "../.env" });
-
 const twitter = require("twitter");
 const twitterHandle = new twitter({
 	consumer_key: process.env.consumer_key,
@@ -42,13 +41,13 @@ module.exports = srv => {
 	srv.on("READ", "Tweets", async req => {
 		const timelineParams = {
 			screen_name: "Utegration",
-			count: 30,
+			count: 100,
 			tweet_mode: "extended"
 		};
 
 		const searchParams = {
 			q: "@Utegration",
-			count: 30,
+			count: 100,
 			result_type: "mixed",
 			tweet_mode: "extended"
 		};
