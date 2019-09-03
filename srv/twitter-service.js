@@ -2,7 +2,7 @@
  * Implementation for TwitterService defined in ./cat-service.cds
  */
 
-require("dotenv").config({ path: "../.env" });
+require("dotenv").config({ path: ".env" });
 const twitter = require("twitter");
 const twitterHandle = new twitter({
 	consumer_key: process.env.consumer_key,

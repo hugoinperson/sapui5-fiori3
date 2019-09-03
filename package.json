@@ -4,7 +4,7 @@
   "description": "Sample of an OpenUI5 app",
   "private": true,
   "scripts": {
-    "start": "cd odata && cds run",
+    "start": "cds run",
     "start-ui5-app": "ui5 serve --h2 -p 5566",
     "start-odata-app": "cd odata && cds run",
     "lint": "eslint webapp",
